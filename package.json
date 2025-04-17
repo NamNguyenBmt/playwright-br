@@ -1,0 +1,23 @@
+{
+  "name": "playwright-br",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NamNguyenBmt/playwright-br.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NamNguyenBmt/playwright-br/issues"
+  },
+  "homepage": "https://github.com/NamNguyenBmt/playwright-br#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1"
+  }
+}
