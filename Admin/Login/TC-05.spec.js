@@ -1,8 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../../pages/LoginPage');
-test('Login without username and password should show errors', async ({ page }) => {
+test('TC_05: Login without username and password should show errors', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  await page.goto('https://admin.gorightstore.com/login');
+  await page.goto('https://staging-admin.gorightstore.com/login');
 
   await loginPage.login('', '');
 

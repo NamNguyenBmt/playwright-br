@@ -1,11 +1,11 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../../pages/LoginPage.js');
 
-test('Login to buyRight', async ({ page }) => {
+test('TC_01: Login to buyRight', async ({ page }) => {
 
   const loginPage = new LoginPage(page);
 
-  await page.goto('https://admin.gorightstore.com/login');
+  await page.goto('https://staging-admin.gorightstore.com/login');
 
-  await loginPage.login('nam.nguyen', 'admin123456');
+  await loginPage.login('nam', 'Admin123456');
 });
