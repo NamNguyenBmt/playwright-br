@@ -10,11 +10,22 @@ class BrandPage {
     this.brandSubdomainInput = page.getByPlaceholder('Enter subdo');
     this.brandLogoInput = page.locator('input[type="file"]');
     this.saveButton = page.getByRole('button', { name: 'Save' });
+    this.cancelButton = page.getByRole('button', { name: 'Cancel' });
 
     // Brand Detail
     this.deleteBrandButton = page.getByRole('button', { name: 'Delete Brand' });
     this.confirmDeleteButton = page.getByRole('button', { name: 'Delete', exact: true });
     this.successMessage = page.getByText('Delete Brand Success!');
+
+    // Cancel Button add brand
+    this.cancelButton = page.getByRole('button', { name: 'Cancel' });
+    this.confirmCancelButton = page.getByRole('dialog').getByRole('button', { name: 'OK'});
+    this.cancelConfirmButton = page.getByRole('dialog').getByRole('button', { name: 'Cancel'});
+
+    this.brandnameMissing = page.getByText('This is a required field!')
+    this.brandcodeMissing = page.getByText('This is a required field!')
+    this.subdomainMissing = page.getByText('This is a required field!')
+    this.brandlogoMissing = page.getByText('This is a required field!')
   }
 
   async goToCreateBrandPage() {
@@ -32,6 +43,14 @@ class BrandPage {
     await this.page.waitForLoadState('networkidle');
   }
 
+  async createBrandMissingBrandlogo(brandName, brandCode, subdomain) {
+    await this.brandNameInput.fill(brandName);
+    await this.brandCodeInput.fill(brandCode);
+    await this.brandSubdomainInput.fill(subdomain);
+    await this.saveButton.click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
   async goToBrandDetail(brandName) {
     const brandRow = this.page.getByRole('row').filter({ hasText: brandName });
     await brandRow.waitFor({ state: 'visible' });
@@ -44,9 +63,32 @@ class BrandPage {
     await this.confirmDeleteButton.click();
     await this.successMessage.waitFor({ state: 'visible' });
   }
+  async canceladdBrand() {
+    await this.cancelButton.click();
+    await this.confirmCancelButton.click();
+    await this.page.waitForLoadState('networkidle');
+  }
+  async cancelConfirmButtonAddBrand() {
+    await this.cancelButton.click();
+    await this.cancelConfirmButton.click();
+    await this.page.waitForLoadState('networkidle');
+  }
 
   async getSuccessMessage() {
     return this.successMessage;
+  }
+
+  async getBrandnameMissing() {
+    return this.brandnameMissing;
+  }
+  async getBrandcodeMissing() {
+    return this.brandcodeMissing;
+  }
+  async getSubdomainMissing() {
+    return this.subdomainMissing;
+  }
+  async getBrandlogoMissing() {
+    return this.brandlogoMissing;
   }
 }
 
